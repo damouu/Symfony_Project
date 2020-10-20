@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HelloBilalController extends AbstractController
 {
     /**
-     * @Route("/hello/bilal", name="hello_bilal")
+     * @Route("/hello", name="hello_bilal")
      */
     public function index()
     {

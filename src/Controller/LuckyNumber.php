@@ -19,9 +19,9 @@ class LuckyNumber extends AbstractController
         $number = random_int(0, 365);
         $loader = $this->get('twig')->getLoader();
         if ($loader->exists('base.html.twig')) {
-            echo 'does exists';
+            echo 'the base.html.twig template exist';
         } else {
-            echo 'does not exists';
+            echo 'the base.html.twig does not exists';
         }
         return $this->render('base.html.twig', ['number' => $number]);
     }
