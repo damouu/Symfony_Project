@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %} Pokemon! {% endblock %}
+{% block body %}
+    {{ random()|length }}
+    <ul>
+        {% for Pokemon_game in Pokemon_games %}
+            <li>{{ Pokemon_game }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

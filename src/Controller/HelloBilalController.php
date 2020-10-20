@@ -13,8 +13,9 @@ class HelloBilalController extends AbstractController
      */
     public function index()
     {
-        return $this->render('hello_bilal/index.html.twig', [
-            'controller_name' => 'HelloBilalController',
+        $Pokemon_games = array('Pokemon_red', 'Pokemon_blue', 'Pokemon_green');
+        return $this->render('Pokemon.html.twig', [
+            'Pokemon_games' => $Pokemon_games,
         ]);
     }
 }
