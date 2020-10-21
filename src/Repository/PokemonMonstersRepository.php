@@ -19,6 +19,16 @@ class PokemonMonstersRepository extends ServiceEntityRepository
         parent::__construct($registry, PokemonMonsters::class);
     }
 
+
+    public function findAttack100()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.attack > 100')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return PokemonMonsters[] Returns an array of PokemonMonsters objects
     //  */
