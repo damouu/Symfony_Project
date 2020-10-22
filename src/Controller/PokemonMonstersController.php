@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\PokemonMonsters;
 use App\Repository\PokemonMonstersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,21 +13,24 @@ class PokemonMonstersController extends AbstractController
 {
     /**
      * @Route("/pokemon/monsters/{id}", name="pokemon_monsters", methods={"GET","HEAD"})
-     * @param int $id
-     * @param PokemonMonstersRepository $pokemonMonstersRepository
+     * @param PokemonMonsters $pokemonMonsters
      * @return Response
      */
-    public function getPokemonId(int $id, PokemonMonstersRepository $pokemonMonstersRepository): Response
+    public function getPokemonId(PokemonMonsters $pokemonMonsters): Response
     {
-        $pokemon = $pokemonMonstersRepository->findOneBy(['id' => $id]);
-        /*$test = $pokemonMonstersRepository->findAttack100();*/
-        if (!$pokemon) {
-            throw $this->createNotFoundException('Not found Pokemon');
-        } else {
-            return $this->render('pokemon_monsters/index.html.twig', [
-                'controller_name' => 'PokemonMonstersController',
-                'pokemon' => $pokemon
-            ]);
-        }
+        return $this->render('pokemon_monsters/index.html.twig', [
+            'controller_name' => 'PokemonMonstersController',
+            'pokemon' => $pokemonMonsters
+        ]);
+    }
+
+    /**
+     * @Route ("/pokemon/monsters", name="post_pokemon", methods={"POST","HEAD"})
+     * @param PokemonMonsters $pokemonMonsters
+     * @return Response
+     */
+    public function postPokemon(PokemonMonsters $pokemonMonsters): Response
+    {
+        dd($pokemonMonsters);
     }
 }

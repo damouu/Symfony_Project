@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\PokemonMonsters;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,7 +21,7 @@ class PokemonMonstersRepository extends ServiceEntityRepository
     }
 
 
-    public function findAttack100()
+    public function findAttack100(QueryBuilder $queryBuilder): QueryBuilder
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.attack > 100')

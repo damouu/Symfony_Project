@@ -47,6 +47,11 @@ class PokemonMonsters
      */
     private $special;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $special_attack;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,18 @@ class PokemonMonsters
     public function setSpecial(int $special): self
     {
         $this->special = $special;
+
+        return $this;
+    }
+
+    public function getSpecialAttack(): ?int
+    {
+        return $this->special_attack;
+    }
+
+    public function setSpecialAttack(int $special_attack): self
+    {
+        $this->special_attack = $special_attack;
 
         return $this;
     }
