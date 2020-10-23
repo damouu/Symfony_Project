@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\PokemonMonsters;
 use App\Repository\PokemonMonstersRepository;
+use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Contracts\Cache\CacheInterface;
 
 class PokemonMonstersController extends AbstractController
 {
@@ -16,11 +18,16 @@ class PokemonMonstersController extends AbstractController
      * @param PokemonMonsters $pokemonMonsters
      * @return Response
      */
-    public function getPokemonId(PokemonMonsters $pokemonMonsters): Response
+    public function getPokemonId(CacheInterface $cache, PokemonMonsters $pokemonMonsters, MarkdownParserInterface $markdownParser): Response
     {
+        $random_Text = "the visitor is like the *red* `cows` ";
+        $dede = $cache->get('speakingInEnglish', function () use ($random_Text, $markdownParser) {
+            return $markdownParser->transformMarkdown($random_Text);
+        });
         return $this->render('pokemon_monsters/index.html.twig', [
             'controller_name' => 'PokemonMonstersController',
-            'pokemon' => $pokemonMonsters
+            'pokemon' => $pokemonMonsters,
+            'dede' => $dede
         ]);
     }
 
