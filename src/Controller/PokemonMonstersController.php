@@ -25,12 +25,13 @@ class PokemonMonstersController extends AbstractController
     }
 
     /**
-     * @Route ("/pokemon/monsters", name="post_pokemon", methods={"POST","HEAD"})
+     * @Route ("/pokemon/monsters/", name="post_pokemon", methods={"get","HEAD"})
      * @param PokemonMonsters $pokemonMonsters
      * @return Response
      */
-    public function postPokemon(PokemonMonsters $pokemonMonsters): Response
+    public function postPokemon(PokemonMonstersRepository $pokemonMonstersRepository): Response
     {
-        dd($pokemonMonsters);
+        $dede = $pokemonMonstersRepository->findAttack100();
+        dd($dede);
     }
 }

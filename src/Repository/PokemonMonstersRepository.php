@@ -21,11 +21,11 @@ class PokemonMonstersRepository extends ServiceEntityRepository
     }
 
 
-    public function findAttack100(QueryBuilder $queryBuilder): QueryBuilder
+    public function findAttack100()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.attack > 100')
-            ->setMaxResults(10)
+            ->andWhere('p.attack >= 100')
+            ->setMaxResults(1)
             ->getQuery()
             ->getResult();
     }
