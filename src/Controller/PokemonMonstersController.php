@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\PokemonMonsters;
 use App\Repository\PokemonMonstersRepository;
-use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
+use App\Service\MarkdownHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,23 +16,22 @@ class PokemonMonstersController extends AbstractController
     /**
      * @Route("/pokemon/monsters/{id}", name="pokemon_monsters", methods={"GET","HEAD"})
      * @param PokemonMonsters $pokemonMonsters
+     * @param MarkdownHelper $markdownHelper
      * @return Response
      */
-    public function getPokemonId(CacheInterface $cache, PokemonMonsters $pokemonMonsters, MarkdownParserInterface $markdownParser): Response
+    public function getPokemonId(CacheInterface $cache, PokemonMonsters $pokemonMonsters, MarkdownHelper $markdownHelper): Response
     {
         $random_Text = "the visitor is like the *red* `cows` ";
-        $dede = $cache->get('speakingInEnglish', function () use ($random_Text, $markdownParser) {
-            return $markdownParser->transformMarkdown($random_Text);
-        });
+        dump($this->getParameter('cache_adapter'));
+        $parsedQuestionText = $markdownHelper->parse($random_Text);
         return $this->render('pokemon_monsters/index.html.twig', [
             'controller_name' => 'PokemonMonstersController',
-            'pokemon' => $pokemonMonsters,
-            'dede' => $dede
+            'parsedQuestionText' => $parsedQuestionText
         ]);
     }
 
     /**
-     * @Route ("/pokemon/monsters/", name="post_pokemon", methods={"get","HEAD"})
+     * @Route ("/pokemon/monsters/", name="pokemon_100_attack", methods={"get","HEAD"})
      * @param PokemonMonsters $pokemonMonsters
      * @return Response
      */
@@ -40,5 +39,20 @@ class PokemonMonstersController extends AbstractController
     {
         $dede = $pokemonMonstersRepository->findAttack100();
         dd($dede);
+    }
+
+    /**
+     * @Route ("/zemel/", name="zemel_route", methods={"get","HEAD"})
+     * @param PokemonMonsters $pokemonMonsters
+     * @return Response
+     */
+    public function zemel(PokemonMonstersRepository $pokemonMonstersRepository): Response
+    {
+        $dede = $pokemonMonstersRepository->findAttack100();
+        return $this->render('pokemon_monsters/index.html.twig', [
+            'controller_name' => 'PokemonMonstersController',
+            'pokemon' => $dede,
+            'dede' => $dede
+        ]);
     }
 }
