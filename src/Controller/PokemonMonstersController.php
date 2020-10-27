@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Contracts\Cache\CacheInterface;
+
 
 class PokemonMonstersController extends AbstractController
 {
@@ -17,16 +17,18 @@ class PokemonMonstersController extends AbstractController
      * @Route("/pokemon/monsters/{id}", name="pokemon_monsters", methods={"GET","HEAD"})
      * @param PokemonMonsters $pokemonMonsters
      * @param MarkdownHelper $markdownHelper
+     * @param bool $isDebug
      * @return Response
      */
-    public function getPokemonId(CacheInterface $cache, PokemonMonsters $pokemonMonsters, MarkdownHelper $markdownHelper): Response
+    public function getPokemonId(PokemonMonsters $pokemonMonsters, MarkdownHelper $markdownHelper, bool $isDebug): Response
     {
         $random_Text = "the visitor is like the *red* `cows` ";
         dump($this->getParameter('cache_adapter'));
+        dump($isDebug);
         $parsedQuestionText = $markdownHelper->parse($random_Text);
         return $this->render('pokemon_monsters/index.html.twig', [
             'controller_name' => 'PokemonMonstersController',
-            'parsedQuestionText' => $parsedQuestionText
+            'parsedQuestionText' => $parsedQuestionText,
         ]);
     }
 
