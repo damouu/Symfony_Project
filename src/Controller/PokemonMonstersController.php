@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\PokemonMonsters;
 use App\Repository\PokemonMonstersRepository;
 use App\Service\MarkdownHelper;
+use Sentry\State\HubInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,13 +16,16 @@ class PokemonMonstersController extends AbstractController
 {
     /**
      * @Route("/pokemon/monsters/{id}", name="pokemon_monsters", methods={"GET","HEAD"})
+     * @param HubInterface $sentryHub
      * @param PokemonMonsters $pokemonMonsters
      * @param MarkdownHelper $markdownHelper
      * @param bool $isDebug
      * @return Response
+     * @throws \Exception
      */
-    public function getPokemonId(PokemonMonsters $pokemonMonsters, MarkdownHelper $markdownHelper, bool $isDebug): Response
+    public function getPokemonId(HubInterface $sentryHub, PokemonMonsters $pokemonMonsters, MarkdownHelper $markdownHelper, bool $isDebug): Response
     {
+        dump($sentryHub);
         if ($isDebug) {
             dump($isDebug);
         } else {
