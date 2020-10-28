@@ -22,13 +22,17 @@ class PokemonMonstersController extends AbstractController
      */
     public function getPokemonId(PokemonMonsters $pokemonMonsters, MarkdownHelper $markdownHelper, bool $isDebug): Response
     {
-        $random_Text = "the visitor is like the *red* `cows` ";
+        if ($isDebug) {
+            dump($isDebug);
+        } else {
+            throw new \Exception('appear in sentry.io please'); // this line is an exemple to Sentry.io
+        }
+        $random_Text = "the visitor is like a *red* `cows` ";
         dump($this->getParameter('cache_adapter'));
-        dump($isDebug);
         $parsedQuestionText = $markdownHelper->parse($random_Text);
         return $this->render('pokemon_monsters/index.html.twig', [
             'controller_name' => 'PokemonMonstersController',
-            'parsedQuestionText' => $parsedQuestionText,
+            'PokemonMonsters' => $pokemonMonsters,
         ]);
     }
 
