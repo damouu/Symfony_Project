@@ -27,6 +27,7 @@ class PokemonMonstersController extends AbstractController
     {
         dump($sentryHub);
         if ($isDebug) {
+            dump("here is people branch");
             dump($isDebug);
         } else {
             throw new \Exception('appear in sentry.io please'); // this line is an exemple to Sentry.io
