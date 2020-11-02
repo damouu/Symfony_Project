@@ -11,7 +11,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        //PokemonMonstersFactory::new()->createMany(3);
+        PokemonMonstersFactory::new()->createMany(10);
         PeopleFactory::new()->createMany(10);
     }
 }
