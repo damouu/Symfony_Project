@@ -6,15 +6,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PeopleFormController extends AbstractController
+class FormPeopleController extends AbstractController
 {
     /**
-     * @Route("/people/form", name="people_form")
+     * @Route("/form/people", name="form_people")
      */
     public function index(): Response
     {
-        return $this->render('people_form/index.html.twig', [
-            'controller_name' => 'PeopleFormController',
+        return $this->render('form_people/index.html.twig', [
+            'controller_name' => 'FormPeopleController',
         ]);
     }
 }
