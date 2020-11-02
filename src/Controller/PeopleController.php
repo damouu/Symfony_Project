@@ -11,14 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class PeopleController extends AbstractController
 {
     /**
-     * @Route("/people/{age}", name="people")
+     * @Route("/people/{id}", name="people")
      * @param People $people
      * @param PeopleRepository $peopleRepository
      * @return Response
      */
-    public function index(PeopleRepository $peopleRepository): Response
+    public function index(PeopleRepository $peopleRepository, People $people): Response
     {
-        $people = $peopleRepository->findByFirstName(61);
+        //$people = $peopleRepository->findByFirstName(61);
         return $this->render('people/index.html.twig', [
             'controller_name' => 'PeopleController',
             'people' => $people

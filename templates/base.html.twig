@@ -6,6 +6,9 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success"> {{ message }}</div>
+{% endfor %}
 <h1>{% block body %} Your lucky number is {{ number }} {% endblock %}</h1>
 </body>
 </html>
