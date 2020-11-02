@@ -23,8 +23,7 @@ class FormPeopleController extends AbstractController
         $form = $this->createForm(PeopleFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $people = $form->getData();
-            $entityManager->persist($people);
+            $entityManager->persist($form->getData());
             $entityManager->flush();
             $this->addFlash('success', 'mashallah la Franca');
             return $this->redirectToRoute('HomePage');
