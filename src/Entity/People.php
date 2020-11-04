@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\PeopleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass=PeopleRepository::class)
@@ -19,6 +21,7 @@ class People
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="please fill this field")
      */
     private $title;
 
@@ -34,6 +37,7 @@ class People
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\PositiveOrZero()
      */
     private $age;
 
@@ -88,5 +92,18 @@ class People
         $this->age = $age;
 
         return $this;
+    }
+
+    /**
+     * @Assert\Callback()
+     * @param ExecutionContextInterface $executionContext
+     */
+    public function validate(ExecutionContextInterface $executionContext)
+    {
+        if ($this->getAge() > 100) {
+            $executionContext->buildViolation('weshhh 100 piges c trop')
+                ->atPath('age')
+                ->addViolation();
+        }
     }
 }
