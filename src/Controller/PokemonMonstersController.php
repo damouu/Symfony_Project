@@ -3,13 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\PokemonMonsters;
+use App\Form\PokemonMonstersType;
 use App\Repository\PokemonMonstersRepository;
 use App\Service\MarkdownHelper;
 use Sentry\State\HubInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 
 class PokemonMonstersController extends AbstractController
@@ -66,4 +70,12 @@ class PokemonMonstersController extends AbstractController
             'dede' => $dede
         ]);
     }
+
+    /*public function PokemonMonstersForm(UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, Request $request, EntityManagerInterface $entityManager)
+    {
+        $form = $this->createForm(PokemonMonstersType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+        }
+    }*/
 }
