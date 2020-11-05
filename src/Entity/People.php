@@ -14,8 +14,8 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="string", length=255, unique=true)
      */
     private $id;
 
@@ -38,19 +38,20 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
     private $lastName;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",length=5)
      * @Assert\Positive()
      */
     private $age;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      * @Assert\Email()
+     * @Assert\NotBlank(message="Please enter an email address")
      */
     private $email;
 
