@@ -27,27 +27,31 @@ class People
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\PositiveOrZero()
+     * @Assert\Positive()
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="please insert your password")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $email;
 
