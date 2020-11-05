@@ -70,12 +70,4 @@ class PokemonMonstersController extends AbstractController
             'dede' => $dede
         ]);
     }
-
-    /*public function PokemonMonstersForm(UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, Request $request, EntityManagerInterface $entityManager)
-    {
-        $form = $this->createForm(PokemonMonstersType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-        }
-    }*/
 }
