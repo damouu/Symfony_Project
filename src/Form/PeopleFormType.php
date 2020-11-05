@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,7 +41,13 @@ class PeopleFormType extends AbstractType
             ->add('last_name', TextType::class, ['help' => 'please enter your last name'])
             ->add('age', NumberType::class, ['help' => 'please enter your age'])
             ->add('email', EmailType::class, ['help' => 'please enter your email address'])
-            ->add('password', PasswordType::class, ['help' => 'please enter your password'])
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'mapped' => false,
+                'first_options' => array('label' => 'New password'),
+                'second_options' => array('label' => 'Confirm new password'),
+                'invalid_message' => 'The password fields must match.',
+            ))
             //->add('pokemon', EntityType::class, ['class' => PokemonMonsters::class, 'choice_label' => 'id', 'placeholder' => 'choose a fucking pokemon!'])
             /*->add('gay', ChoiceType::class, ['placeholder' => 'is u gay?', 'choices' => [
                 'no' => true,

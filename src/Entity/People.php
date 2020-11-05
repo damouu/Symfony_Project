@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 /**
  * @ORM\Entity(repositoryClass=PeopleRepository::class)
  */
-class People
+class People implements \Symfony\Component\Security\Core\User\UserInterface
 {
     /**
      * @ORM\Id
@@ -45,7 +45,6 @@ class People
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="please insert your password")
      */
     private $password;
 
@@ -114,8 +113,8 @@ class People
      */
     public function validate(ExecutionContextInterface $executionContext)
     {
-        if ($this->getAge() > 100) {
-            $executionContext->buildViolation('weshhh 100 piges c trop')
+        if ($this->getAge() > 200) {
+            $executionContext->buildViolation('value too high')
                 ->atPath('age')
                 ->addViolation();
         }
@@ -143,5 +142,25 @@ class People
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }

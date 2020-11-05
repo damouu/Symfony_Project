@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
 class PeopleController extends AbstractController
 {
@@ -33,14 +35,18 @@ class PeopleController extends AbstractController
      * @Route ("/register/people", name="register_people")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      */
-    public function register(Request $request, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $form = $this->createForm(PeopleFormType::class);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($form->getData());
+            /**@var People $people */
+            $people = $form->getData();
+            $people->setPassword($passwordEncoder->encodePassword($people, $form['plainPassword']->getData()));
+            $entityManager->persist($people);
             $entityManager->flush();
             $this->addFlash('success', 'new data inserted into the database');
             return $this->redirectToRoute('HomePage');
