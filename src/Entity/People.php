@@ -4,11 +4,16 @@ namespace App\Entity;
 
 use App\Repository\PeopleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass=PeopleRepository::class)
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="this email is already being use"
+ * )
  */
 class People implements \Symfony\Component\Security\Core\User\UserInterface
 {

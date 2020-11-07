@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PeopleFormType extends AbstractType
 {
@@ -40,10 +42,19 @@ class PeopleFormType extends AbstractType
             ->add('email', EmailType::class, ['help' => 'please enter your email address'])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'mapped' => false, //
+                'mapped' => false, //this indicates to the form that this is not a people's property
                 'first_options' => array('label' => 'New password'),
                 'second_options' => array('label' => 'Confirm new password'),
                 'invalid_message' => 'The password fields must match.',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'This password has been leaked in a data breach, it must not be used. Please use another password.'
+                    ]),
+                    new Length([
+                        'min' => 5,
+                        'minMessage' => 'Enter a password longer thant this length'
+                    ])
+                ]
             ))
             //->add('pokemon', EntityType::class, ['class' => PokemonMonsters::class, 'choice_label' => 'id', 'placeholder' => 'choose a fucking pokemon!'])
             /*->add('gay', ChoiceType::class, ['placeholder' => 'is u gay?', 'choices' => [
