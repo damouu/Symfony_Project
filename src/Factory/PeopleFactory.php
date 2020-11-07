@@ -32,7 +32,9 @@ final class PeopleFactory extends ModelFactory
             'title' => self::faker()->title,
             'first_name' => self::faker()->firstName,
             'last_name' => self::faker()->lastName,
-            'age' => self::faker()->numberBetween(0, 200)
+            'age' => self::faker()->numberBetween(0, 122),
+            'email' => self::faker()->email,
+            'password' => self::faker()->password(6, 20),
         ];
     }
 

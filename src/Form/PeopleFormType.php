@@ -37,7 +37,7 @@ class PeopleFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', ChoiceType::class, ['choices' => ['Ms' => false, "Mrs" => null, "Mr" => true]])
+        $builder
             ->add('first_name', TextType::class, ['help' => 'please enter your first name'])
             ->add('last_name', TextType::class, ['help' => 'please enter your last name'])
             ->add('age', NumberType::class, ['help' => 'please enter your age'])

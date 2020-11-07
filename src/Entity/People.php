@@ -26,7 +26,6 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="please fill this field")
      */
     private $title;
 
@@ -180,10 +179,8 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
         return $this->agreedTermsAt;
     }
 
-    public function setAgreedTermsAt(\DateTimeInterface $agreedTermsAt): self
+    public function agreeTerms()
     {
-        $this->agreedTermsAt = $agreedTermsAt;
-
-        return $this;
+        $this->agreedTermsAt = new \DateTime();
     }
 }
