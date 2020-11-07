@@ -3,11 +3,8 @@
 
 namespace App\Form;
 
-
 use App\Entity\People;
-use App\Entity\PokemonMonsters;
 use App\Repository\PokemonMonstersRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -43,7 +40,7 @@ class PeopleFormType extends AbstractType
             ->add('email', EmailType::class, ['help' => 'please enter your email address'])
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'mapped' => false,
+                'mapped' => false, //
                 'first_options' => array('label' => 'New password'),
                 'second_options' => array('label' => 'Confirm new password'),
                 'invalid_message' => 'The password fields must match.',
@@ -51,8 +48,8 @@ class PeopleFormType extends AbstractType
             //->add('pokemon', EntityType::class, ['class' => PokemonMonsters::class, 'choice_label' => 'id', 'placeholder' => 'choose a fucking pokemon!'])
             /*->add('gay', ChoiceType::class, ['placeholder' => 'is u gay?', 'choices' => [
                 'no' => true,
-                'noooooo' => false,
-                'starff' => false
+                'noo' => false,
+                'hell_no' => false
             ]]);*/
         ;
     }
