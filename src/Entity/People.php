@@ -60,6 +60,11 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
      */
     private $email;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $agreedTermsAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -168,5 +173,17 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getAgreedTermsAt(): ?\DateTimeInterface
+    {
+        return $this->agreedTermsAt;
+    }
+
+    public function setAgreedTermsAt(\DateTimeInterface $agreedTermsAt): self
+    {
+        $this->agreedTermsAt = $agreedTermsAt;
+
+        return $this;
     }
 }
