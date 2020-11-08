@@ -47,7 +47,7 @@ class PokemonMonstersController extends AbstractController
 
     /**
      * @Route ("/pokemon/monsters/", name="pokemon_100_attack", methods={"get","HEAD"})
-     * @param PokemonMonsters $pokemonMonsters
+     * @param PokemonMonstersRepository $pokemonMonstersRepository
      * @return Response
      */
     public function postPokemon(PokemonMonstersRepository $pokemonMonstersRepository): Response
@@ -58,7 +58,7 @@ class PokemonMonstersController extends AbstractController
 
     /**
      * @Route ("/zemel/", name="zemel_route", methods={"get","HEAD"})
-     * @param PokemonMonsters $pokemonMonsters
+     * @param PokemonMonstersRepository $pokemonMonstersRepository
      * @return Response
      */
     public function zemel(PokemonMonstersRepository $pokemonMonstersRepository): Response

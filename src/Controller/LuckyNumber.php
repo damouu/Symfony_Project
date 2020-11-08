@@ -17,6 +17,9 @@ class LuckyNumber extends AbstractController
     public function sayHiTest()
     {
         $number = random_int(0, 365);
+        $pipi = 2;
+        $matrix = 2;
+        $wawa = $pipi + $matrix;
         $loader = $this->get('twig')->getLoader();
         if ($loader->exists('base.html.twig')) {
             echo 'the base.html.twig template exist';

@@ -52,6 +52,7 @@
     "symfony/css-selector": "^5.1",
     "symfony/maker-bundle": "^1.23",
     "symfony/phpunit-bridge": "^5.1",
+    "phpunit/phpunit": "^9.2.2",
     "zenstruck/foundry": "^1.4"
   },
   "config": {
