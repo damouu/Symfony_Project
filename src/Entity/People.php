@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PeopleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  *     message="this email is already being use"
  * )
  */
-class People implements \Symfony\Component\Security\Core\User\UserInterface
+class People implements UserInterface
 {
     /**
      * @ORM\Id
@@ -156,7 +157,7 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
 
     public function getRoles()
     {
-        // TODO: Implement getRoles() method.
+        return array('ROLE_USER');
     }
 
     public function getSalt()
