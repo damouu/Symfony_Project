@@ -4,14 +4,15 @@
 namespace App\Controller;
 
 use Exception;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LuckyNumber extends AbstractController
 {
     /**
      * @Route("/", name="HomePage", methods={"GET","HEAD"})
+     * @return Response
      * @throws Exception
      */
     public function sayHiTest()

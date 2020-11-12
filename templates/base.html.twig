@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+
 </head>
 <body>
-<h1>{% block body %} Your lucky number is {{ number }} {% endblock %}</h1>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success"> {{ message }}</div>
+{% endfor %}
+<h1 class="text-info">{% block body %} Your lucky number is {{ number }} {% endblock %}</h1>
+<img class="offset-4"
+     src="{{ asset('https://res.cloudinary.com/lmn/image/upload/c_limit,h_360,w_640/e_sharpen:100/f_auto,fl_lossy,q_auto/v1/gameskinnyc/f/i/n/final-fantasy-chocobo1-5ce64.png') }}">
 </body>
 </html>
