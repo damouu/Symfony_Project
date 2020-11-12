@@ -96,7 +96,7 @@ class PeopleAuthenticator extends AbstractFormLoginAuthenticator implements Pass
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('HomePage', ['user_email' => $request->request->get('email')]));
+        return new RedirectResponse($this->urlGenerator->generate('HomePage'));
     }
 
     protected function getLoginUrl()

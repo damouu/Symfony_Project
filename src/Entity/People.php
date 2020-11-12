@@ -15,6 +15,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  *     fields={"email"},
  *     message="this email is already being use"
  * )
+ * @ORM\Entity
+ * @ORM\Table(name="people")
  */
 class People implements UserInterface
 {
@@ -61,9 +63,22 @@ class People implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $agreedTermsAt;
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $roles = [];
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
 
     public function getId(): ?int
     {
@@ -157,7 +172,11 @@ class People implements UserInterface
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;
+        if (!in_array('ROLES_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+        return $roles;
     }
 
     public function getSalt()
@@ -177,7 +196,12 @@ class People implements UserInterface
 
     public function getAgreedTermsAt(): ?\DateTimeInterface
     {
-        return $this->agreedTermsAt;
+        return $this->agreedTermsAt = new \DateTime();
+    }
+
+    public function setAgreedTermsAt(): ?\DateTimeInterface
+    {
+        return $this->agreedTermsAt = new \DateTime();
     }
 
     public function agreeTerms()
