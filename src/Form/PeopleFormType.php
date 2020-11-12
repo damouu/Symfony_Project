@@ -4,7 +4,6 @@
 namespace App\Form;
 
 use App\Entity\People;
-use App\Repository\PokemonMonstersRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,19 +20,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class PeopleFormType extends AbstractType
 {
-    /**
-     * @var PokemonMonstersRepository
-     */
-    private $pokemonMonstersRepository;
-
-    /**
-     * PeopleFormType constructor.
-     * @param PokemonMonstersRepository $pokemonMonstersRepository
-     */
-    public function __construct(PokemonMonstersRepository $pokemonMonstersRepository)
-    {
-        $this->pokemonMonstersRepository = $pokemonMonstersRepository;
-    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -75,14 +61,7 @@ class PeopleFormType extends AbstractType
                         'message' => 'you must agree to our terms'
                     ])
                 ]
-            ])
-            //->add('pokemon', EntityType::class, ['class' => PokemonMonsters::class, 'choice_label' => 'id', 'placeholder' => 'choose a fucking pokemon!'])
-            /*->add('gay', ChoiceType::class, ['placeholder' => 'is u gay?', 'choices' => [
-                'no' => true,
-                'noo' => false,
-                'hell_no' => false
-            ]]);*/
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
