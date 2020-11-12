@@ -2,60 +2,81 @@
 
 namespace App\Entity;
 
-use App\Repository\PokemonMonstersRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PokemonMonstersRepository::class)
+ * PokemonMonsters
+ *
+ * @ORM\Table(name="pokemon_monsters")
+ * @ORM\Entity
  */
 class PokemonMonsters
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="pokemon_monsters_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
-    private $Name;
+    private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="hp", type="integer", nullable=false)
      */
     private $hp;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="attack", type="integer", nullable=false)
      */
     private $attack;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="defense", type="integer", nullable=false)
      */
     private $defense;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="speed", type="integer", nullable=false)
      */
     private $speed;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="special", type="integer", nullable=false)
      */
     private $special;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="special_attack", type="integer", nullable=false)
      */
-    private $special_attack;
+    private $specialAttack;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @var int|null
+     *
+     * @ORM\Column(name="special_defense", type="integer", nullable=true)
      */
-    private $special_defense;
+    private $specialDefense;
 
     public function getId(): ?int
     {
@@ -64,12 +85,12 @@ class PokemonMonsters
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
@@ -136,25 +157,27 @@ class PokemonMonsters
 
     public function getSpecialAttack(): ?int
     {
-        return $this->special_attack;
+        return $this->specialAttack;
     }
 
-    public function setSpecialAttack(int $special_attack): self
+    public function setSpecialAttack(int $specialAttack): self
     {
-        $this->special_attack = $special_attack;
+        $this->specialAttack = $specialAttack;
 
         return $this;
     }
 
     public function getSpecialDefense(): ?int
     {
-        return $this->special_defense;
+        return $this->specialDefense;
     }
 
-    public function setSpecialDefense(?int $special_defense): self
+    public function setSpecialDefense(?int $specialDefense): self
     {
-        $this->special_defense = $special_defense;
+        $this->specialDefense = $specialDefense;
 
         return $this;
     }
+
+
 }

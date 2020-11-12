@@ -2,85 +2,83 @@
 
 namespace App\Entity;
 
-use App\Repository\PeopleRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
- * @ORM\Entity(repositoryClass=PeopleRepository::class)
- * @UniqueEntity(
- *     fields={"email"},
- *     message="this email is already being use"
- * )
+ * People
+ *
+ * @ORM\Table(name="people", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_28166a26e7927c74", columns={"email"})})
  * @ORM\Entity
- * @ORM\Table(name="people")
  */
-class People implements UserInterface
+class People
 {
     /**
+     * @var string
+     *
+     * @ORM\Column(name="id", type="string", length=255, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(name="id", type="string", length=255, unique=true)
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="people_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
      */
     private $lastName;
 
     /**
-     * @ORM\Column(type="integer",length=5)
-     * @Assert\Positive()
+     * @var int
+     *
+     * @ORM\Column(name="age", type="integer", nullable=false)
      */
     private $age;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
-     * @Assert\Email()
-     * @Assert\NotBlank(message="Please enter an email address")
+     * @var string|null
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     *
+     * @ORM\Column(name="agreed_terms_at", type="datetime", nullable=false)
      */
     private $agreedTermsAt;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @var json
+     *
+     * @ORM\Column(name="roles", type="json", nullable=false)
      */
-    private $roles = [];
+    private $roles;
 
-    /**
-     * @param array $roles
-     */
-    public function setRoles(array $roles): void
-    {
-        $this->roles = $roles;
-    }
-
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -133,25 +131,12 @@ class People implements UserInterface
         return $this;
     }
 
-    /**
-     * @Assert\Callback()
-     * @param ExecutionContextInterface $executionContext
-     */
-    public function validate(ExecutionContextInterface $executionContext)
-    {
-        if ($this->getAge() > 200) {
-            $executionContext->buildViolation('value too high')
-                ->atPath('age')
-                ->addViolation();
-        }
-    }
-
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -163,49 +148,36 @@ class People implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    public function getRoles()
-    {
-        $roles = $this->roles;
-        if (!in_array('ROLES_USER', $roles)) {
-            $roles[] = 'ROLE_USER';
-        }
-        return $roles;
-    }
-
-    public function getSalt()
-    {
-        // TODO: Implement getSalt() method.
-    }
-
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
-
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
-
     public function getAgreedTermsAt(): ?\DateTimeInterface
     {
-        return $this->agreedTermsAt = new \DateTime();
+        return $this->agreedTermsAt;
     }
 
-    public function setAgreedTermsAt(): ?\DateTimeInterface
+    public function setAgreedTermsAt(\DateTimeInterface $agreedTermsAt): self
     {
-        return $this->agreedTermsAt = new \DateTime();
+        $this->agreedTermsAt = $agreedTermsAt;
+
+        return $this;
     }
 
-    public function agreeTerms()
+    public function getRoles(): ?array
     {
-        $this->agreedTermsAt = new \DateTime();
+        return $this->roles;
     }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
 }
