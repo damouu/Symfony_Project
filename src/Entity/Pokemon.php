@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Pokemon
  *
  * @ORM\Table(name="pokemon", uniqueConstraints={@ORM\UniqueConstraint(name="pokemon_id_uindex", columns={"id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PokemonRepository")
  */
 class Pokemon
 {
@@ -25,28 +25,28 @@ class Pokemon
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Name", type="string", nullable=true)
+     * @ORM\Column(name="name", type="string", nullable=true)
      */
     private $name;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Type 1 ", type="string", nullable=true)
+     * @ORM\Column(name="type_one", type="string", nullable=true)
      */
-    private $type1;
+    private $typeOne;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Type 2 ", type="string", nullable=true)
+     * @ORM\Column(name="type_two", type="string", nullable=true)
      */
-    private $type2;
+    private $typeTwo;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Total", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="total", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $total;
 
@@ -60,49 +60,49 @@ class Pokemon
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Attack", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="attack", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $attack;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Defense", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="defense", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $defense;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Special Attack", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="special_attack", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $specialAttack;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Special Defense", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="special_defense", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $specialDefense;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Speed", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="speed", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $speed;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Generation", type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="generation", type="decimal", precision=10, scale=0, nullable=true)
      */
     private $generation;
 
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="Legendary", type="boolean", nullable=true)
+     * @ORM\Column(name="legendary", type="boolean", nullable=true)
      */
     private $legendary;
 
@@ -123,26 +123,26 @@ class Pokemon
         return $this;
     }
 
-    public function getType1(): ?string
+    public function getTypeOne(): ?string
     {
-        return $this->type1;
+        return $this->typeOne;
     }
 
-    public function setType1(?string $type1): self
+    public function setTypeOne(?string $typeOne): self
     {
-        $this->type1 = $type1;
+        $this->typeOne = $typeOne;
 
         return $this;
     }
 
-    public function getType2(): ?string
+    public function getTypeTwo(): ?string
     {
-        return $this->type2;
+        return $this->typeTwo;
     }
 
-    public function setType2(?string $type2): self
+    public function setTypeTwo(?string $typeTwo): self
     {
-        $this->type2 = $type2;
+        $this->typeTwo = $typeTwo;
 
         return $this;
     }

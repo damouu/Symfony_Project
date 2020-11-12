@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PokemonMonsters
  *
  * @ORM\Table(name="pokemon_monsters")
- * @ORM\Entity(repositoryClass="App\Repository\PokemonRepository")
+ * @ORM\Entity
  */
 class PokemonMonsters
 {
