@@ -45,7 +45,6 @@ class PeopleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /**@var People $people */
             $people = $form->getData();
-            $people->setTitle('Mrs');
             $people->setPassword($passwordEncoder->encodePassword($people, $form['plainPassword']->getData()));
             if ($form['agreeTerms']->getData() === true) {
                 $people->agreeTerms();
