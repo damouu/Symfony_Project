@@ -20,7 +20,7 @@ class HelloBilalController extends AbstractController
         /*dd($Pokemon_games); dump and die function */
         /*dump($Pokemon_games); //the dump fonction now is printed in the web debug tool bar .
         $pokemon_monsters = new PokemonMonsters();*/
-        return $this->render('Pokemon.html.twig', [
+        return $this->render('pokemon_monsters/Pokemon.html.twig', [
             'Pokemon_games' => $Pokemon_games,
         ]);
     }

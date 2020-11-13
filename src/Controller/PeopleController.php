@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\People;
 use App\Form\PeopleFormType;
-use App\Repository\PeopleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,12 +18,10 @@ class PeopleController extends AbstractController
     /**
      * @Route("/people/{id}", name="get_people")
      * @param People $people
-     * @param PeopleRepository $peopleRepository
      * @return Response
      */
-    public function index(PeopleRepository $peopleRepository, People $people): Response
+    public function index(People $people): Response
     {
-        //$people = $peopleRepository->findByFirstName(61);
         return $this->render('people/index.html.twig', [
             'controller_name' => 'PeopleController',
             'people' => $people

@@ -35,7 +35,6 @@ final class PeopleFactory extends ModelFactory
             'age' => self::faker()->numberBetween(0, 122),
             'email' => self::faker()->email,
             'password' => self::faker()->password(6, 20),
-            'agreedTermsAt' => self::faker()->date(),
         ];
     }
 

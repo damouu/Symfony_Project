@@ -3,10 +3,12 @@
 {% block title %}Hello FormPeopleController!{% endblock %}
 
 {% block body %}
-    {{ form_start(formPeople) }}
-    {{ form_widget(formPeople) }}
-    {# {{ form_row(formPeople.first_name,{'label':'feather'}) }} #}
-    {# {{ form_row(formPeople.first_name) }} pour generer une seule ligne de champ pour formulaire #}
-    <button type="submit">click me!</button>
-    {{ form_end(formPeople) }}
+    <div class="form-group">
+        {{ form_start(formPeople) }}
+        {{ form_widget(formPeople) }}
+        {# {{ form_row(formPeople.first_name,{'label':'feather'}) }} #}
+        {# {{ form_row(formPeople.first_name) }} pour generer une seule ligne de champ pour formulaire #}
+        <button type="submit">click me!</button>
+        {{ form_end(formPeople) }}
+    </div>
 {% endblock %}

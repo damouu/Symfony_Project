@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PokemonController!{% endblock %}
+
+{% block body %}
+    <div class="container card mt-5 shadow bg-gradient rounded">
+        <div class="row card-body">
+            <h3 class="card-title text-center text-success">Pokemon informations:</h3>
+            <p class="text-info text-center">Name : {{ pokemon.name }}</p>
+            <p class="text-info text-center">Type 1 : {{ pokemon.typeOne }}</p>
+            <p class="text-info text-center">Type 2 : {{ pokemon.typeTwo }}</p>
+            <p class="text-secondary text-center">Generation : {{ pokemon.generation }}</p>
+            {% if pokemon.legendary is same as true %}
+                <p class="text-warning text-center">legendary pokemon</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
