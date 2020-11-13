@@ -3,34 +3,16 @@
 {% block title %}Hello PokemonController!{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
-        }
-    </style>
-
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a
-                            href="{{ '/home/mouad/PhpstormProjects/Kanji_App-Admin/src/Controller/PokemonController.php'|file_link(0) }}">src/Controller/PokemonController.php</a></code>
-            </li>
-            <li>Your template at <code><a
-                            href="{{ '/home/mouad/PhpstormProjects/Kanji_App-Admin/templates/pokemon/index.html.twig'|file_link(0) }}">templates/pokemon/index.html.twig</a></code>
-            </li>
-        </ul>
-    </div>
-    <div class="example-wrapper">
-        <h1 class="text-danger">{{ pokemon.Name }}</h1>
+    <div class="container card mt-5 shadow bg-gradient rounded">
+        <div class="row card-body">
+            <h3 class="card-title text-center text-success">Pokemon informations:</h3>
+            <p class="text-info text-center">Name : {{ pokemon.name }}</p>
+            <p class="text-info text-center">Type 1 : {{ pokemon.typeOne }}</p>
+            <p class="text-info text-center">Type 2 : {{ pokemon.typeTwo }}</p>
+            <p class="text-secondary text-center">Generation : {{ pokemon.generation }}</p>
+            {% if pokemon.legendary is same as true %}
+                <p class="text-warning text-center">legendary pokemon</p>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
