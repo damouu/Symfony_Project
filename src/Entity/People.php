@@ -65,13 +65,6 @@ class People
     private $email;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="agreed_terms_at", type="datetime", nullable=false)
-     */
-    private $agreedTermsAt;
-
-    /**
      * @var json
      *
      * @ORM\Column(name="roles", type="json", nullable=false)
@@ -155,17 +148,6 @@ class People
         return $this;
     }
 
-    public function getAgreedTermsAt(): ?\DateTimeInterface
-    {
-        return $this->agreedTermsAt;
-    }
-
-    public function setAgreedTermsAt(\DateTimeInterface $agreedTermsAt): self
-    {
-        $this->agreedTermsAt = $agreedTermsAt;
-
-        return $this;
-    }
 
     public function getRoles(): ?array
     {
