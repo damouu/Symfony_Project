@@ -67,7 +67,7 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
     /**
      * @var json
      *
-     * @ORM\Column(name="roles", type="json", nullable=false)
+     * @ORM\Column(name="roles", type="json", nullable=true, options={"default": "[]"})
      */
     private $roles;
 
@@ -151,7 +151,10 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
 
     public function getRoles(): ?array
     {
-        return array($this->roles);
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
