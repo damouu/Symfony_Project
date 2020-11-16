@@ -39,6 +39,11 @@ class PeopleAuthenticator extends AbstractFormLoginAuthenticator implements Pass
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    // Functional testing / Unit testing
+    // Jenkins : Continuous Integration / Continuous Delivery
+    // Redis : NoSql
+    // Jira : Methodology agile / Scrum / Kanban
+
     public function supports(Request $request)
     {
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
