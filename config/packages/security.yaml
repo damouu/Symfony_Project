@@ -37,3 +37,7 @@ security:
   access_control:
   # - { path: ^/pokemon, roles: ROLE_ADMIN }
   # - { path: ^/profile, roles: ROLE_USER }
+
+  role_hierarchy:
+    ROLE_EDITOR: ROLE_USER    # This line says that any user having the ROLE_EDITOR also has the ROLE_USER
+    ROLE_ADMIN: ROLE_EDITOR   # so basically all user having the ROLE_ADMIN, also have the ROLE_EDITOR's and the ROLE_USER's privileges.

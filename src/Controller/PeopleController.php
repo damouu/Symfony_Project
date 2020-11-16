@@ -44,12 +44,11 @@ class PeopleController extends AbstractController
             $people = $form->getData();
             $people->setPassword($passwordEncoder->encodePassword($people, $form['plainPassword']->getData()));
             if ($form['agreeTerms']->getData() === true) {
-                $people->agreeTerms();
+                $entityManager->persist($people);
+                $entityManager->flush();
+                $this->addFlash('success', 'new data inserted into the database'); // print a message on the redirect route
+                return $this->redirectToRoute('HomePage');
             }
-            $entityManager->persist($people);
-            $entityManager->flush();
-            $this->addFlash('success', 'new data inserted into the database');
-            return $this->redirectToRoute('HomePage');
         }
         return $this->render('form_people/index.html.twig', [
             'formPeople' => $form->createView(),
