@@ -7,18 +7,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class PokemonController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/pokemon/{id}", name="pokemon")
-     * @param HttpClientInterface $client
      * @param Pokemon $pokemon
      * @return Response
      */
-    public function index(HttpClientInterface $client, Pokemon $pokemon): Response
+    public function index(Pokemon $pokemon): Response
     {
         $pokemonGif = "https://projectpokemon.org/images/normal-sprite/" . lcfirst($pokemon->getName()) . ".gif";
         return $this->render('pokemon/index.html.twig', [
