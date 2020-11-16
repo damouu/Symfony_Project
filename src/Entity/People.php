@@ -151,7 +151,7 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
 
     public function getRoles(): ?array
     {
-        return $this->roles;
+        return array($this->roles);
     }
 
     public function setRoles(array $roles): self
