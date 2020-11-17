@@ -59,7 +59,7 @@ class AdminController extends AbstractController
             $this->addFlash('success', 'data successfully updated');
             return $this->redirectToRoute('admin_users', ['id' => $people->getId()]);
         }
-        return $this->render('form_people/index.html.twig', [
+        return $this->render('admin/form.html.twig', [
             'formPeople' => $form->createView(),
         ]);
     }
