@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * People
@@ -59,7 +60,7 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank(message="Please enter a valid email address.")
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
