@@ -13,10 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
+/**
+ * Class PeopleController
+ * @package App\Controller
+ * @Route("/people", name="people_")
+ */
 class PeopleController extends AbstractController
 {
     /**
-     * @Route("/people/{id}", name="get_people")
+     * @Route("/{id}", name="id")
      * @param People $people
      * @return Response
      */
@@ -29,7 +34,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route ("/register/people", name="register_people")
+     * @Route ("/register", name="register")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -56,7 +61,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route ("/edit/people/{id}", name="edit_people")
+     * @Route ("/edit/{id}", name="edit")
      * @param People $people
      * @param Request $request
      * @param EntityManagerInterface $entityManager
