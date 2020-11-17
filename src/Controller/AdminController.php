@@ -7,6 +7,7 @@ use App\Form\EditPeopleAdminType;
 use App\Repository\PeopleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,23 +42,21 @@ class AdminController extends AbstractController
     }
 
     /**
-     * Edit a user's role and email address by any administrator.
-     * @Route ("/edit/user/{id}", name="edit_user")
-     * @param Request $request
+     * @Route ("/edit/user/{id}", name="edit_users")
      * @param People $people
+     * @param Request $request
      * @param EntityManagerInterface $entityManager
-     * @return Response
+     * @return RedirectResponse|Response
      */
-    public function editUsers(Request $request, People $people, EntityManagerInterface $entityManager): Response
+    public function edit(People $people, Request $request, EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(EditPeopleAdminType::class, $people);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $form->getData();
             $entityManager->persist($form->getData());
             $entityManager->flush();
-            $this->addFlash('success', 'data successfully updated');
-            return $this->redirectToRoute('admin_users', ['id' => $people->getId()]);
+            $this->addFlash('success', 'users role successfully updated');
+            return $this->redirectToRoute('admin_users');
         }
         return $this->render('admin/form.html.twig', [
             'formPeople' => $form->createView(),
