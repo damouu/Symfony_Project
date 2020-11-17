@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PeopleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,6 +19,20 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+        ]);
+    }
+
+    /**
+     * List all the users
+     * @Route("/users", name="users", methods={"GET","OPTIONS"})
+     * @param PeopleRepository $peopleRepository
+     * @return Response
+     */
+    public function listUsers(PeopleRepository $peopleRepository)
+    {
+        return $this->render("admin/index.html.twig", [
+            'controller_name' => 'AdminController',
+            'users' => $peopleRepository->findAll()
         ]);
     }
 }
