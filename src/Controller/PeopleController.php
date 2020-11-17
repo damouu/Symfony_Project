@@ -55,7 +55,7 @@ class PeopleController extends AbstractController
                 return $this->redirectToRoute('HomePage');
             }
         }
-        return $this->render('form_people/index.html.twig', [
+        return $this->render('form.html.twig', [
             'formPeople' => $form->createView(),
         ]);
     }
@@ -75,9 +75,9 @@ class PeopleController extends AbstractController
             $entityManager->persist($form->getData());
             $entityManager->flush();
             $this->addFlash('success', 'data successfully updated');
-            return $this->redirectToRoute('get_people', ['id' => $people->getId()]);
+            return $this->redirectToRoute('people_id', ['id' => $people->getId()]);
         }
-        return $this->render('form_people/index.html.twig', [
+        return $this->render('form.html.twig', [
             'formPeople' => $form->createView(),
         ]);
     }
