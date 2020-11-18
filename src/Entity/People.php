@@ -3,14 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * People
- *
+ * @UniqueEntity(fields={"email"}, message="It look like your already have an account!")
  * @ORM\Table(name="people", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_28166a26e7927c74", columns={"email"})})
  * @ORM\Entity
  */
-class People implements \Symfony\Component\Security\Core\User\UserInterface
+class People implements UserInterface
 {
     /**
      * @var string
@@ -24,42 +27,44 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
 
     /**
      * @var string
-     *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @Assert\Choice({"Ms", "Dr", "Miss", "Prof", "Mrs", "DDS"})
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
+     * @Assert\Type(type="string")
      * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
      */
     private $firstName;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
+     * @Assert\Type(type="string")
      * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
      */
     private $lastName;
 
     /**
      * @var int
-     *
+     * @Assert\PositiveOrZero(message="Please enter a number.")
      * @ORM\Column(name="age", type="integer", nullable=false)
      */
     private $age;
 
     /**
      * @var string|null
-     *
+     * @Assert\NotBlank(message="Please select a valid file.")
      * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
 
     /**
      * @var string|null
-     *
+     * @Assert\Email(message="Please enter a valid email address.")
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
      */
     private $email;
