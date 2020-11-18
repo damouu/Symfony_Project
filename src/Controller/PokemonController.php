@@ -8,11 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class PokemonController
+ * @package App\Controller
+ * @Route("/pokemon", name="pokemon_")
+ */
 class PokemonController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_ADMIN")
-     * @Route("/pokemon/{id}", name="pokemon")
+     * @Route("/{id}", name="get")
      * @param Pokemon $pokemon
      * @return Response
      */
