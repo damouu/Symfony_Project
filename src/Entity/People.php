@@ -50,14 +50,13 @@ class People implements UserInterface
 
     /**
      * @var int
-     * @Assert\PositiveOrZero(message="Please enter a number.")
+     * @Assert\Positive(message="Please enter a number.")
      * @ORM\Column(name="age", type="integer", nullable=false)
      */
     private $age;
 
     /**
      * @var string|null
-     * @Assert\NotBlank(message="Please select a valid file.")
      * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
