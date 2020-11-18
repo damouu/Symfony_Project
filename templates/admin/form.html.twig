@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}This is the form's Template!{% endblock %}
+
+{% block body %}
+    <div class="form-group col-3 offset-4    mt-5">
+        {{ form_start(formPeople) }}
+        {{ form_widget(formPeople) }}
+        <button class="btn btn-primary text-center col-3 offset-4" type="submit">Submit</button>
+        {{ form_end(formPeople) }}
+    </div>
+{% endblock %}
