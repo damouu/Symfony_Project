@@ -3,18 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-<<<<
-<<< HEAD
-=======
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
->>>>>>> people
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * People
- * @UniqueEntity(fields={"email"}, message="It looks like your already have an account!")
+ * @UniqueEntity(fields={"email"}, message="It look like your already have an account!")
  * @ORM\Table(name="people", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_28166a26e7927c74", columns={"email"})})
  * @ORM\Entity
  */
