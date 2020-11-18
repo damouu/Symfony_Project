@@ -13,11 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
-/**
- * Class PeopleController
- * @package App\Controller
- * @Route("/people", name="people_")
- */
+
 class PeopleController extends AbstractController
 {
     /**
@@ -34,7 +30,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route ("/register", name="register")
+     * @Route ("people/register", name="register", methods={"GET","POST"})
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -51,7 +47,7 @@ class PeopleController extends AbstractController
             if ($form['agreeTerms']->getData() === true) {
                 $entityManager->persist($people);
                 $entityManager->flush();
-                $this->addFlash('success', 'new data inserted into the database'); // print a message on the redirect route
+                $this->addFlash('success', 'new data inserted into the database');
                 return $this->redirectToRoute('HomePage');
             }
         }
