@@ -40,7 +40,7 @@ class AdminController extends AbstractController
     {
         return $this->render("admin/ListUsers.html.twig", [
             'controller_name' => 'AdminController',
-            'users' => $peopleRepository->findAll()
+            'peoples' => $peopleRepository->findAll()
         ]);
     }
 
