@@ -3,40 +3,39 @@
 {% block title %}Peoples List{% endblock %}
 
 {% block body %}
-    <div class="">
-        <h1 class="text-center mt-5">peoples Lists</h1>
-        <table class="table">
-            <thead>
+    <h1 class="text-center mt-5">Peoples Lists</h1>
+    <table class="table mt-5 table-striped table-bordered table-hover">
+        <thead>
+        <tr>
             <th>Id</th>
             <th>Title</th>
             <th>First_name</th>
             <th>Last_name</th>
             <th>Age</th>
             <th>Email</th>
-            <th>Role</th>
-            </thead>
-            <tbody>
+            <th>Role(s)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
             {% for people in peoples %}
-                <td>{{ people.id }}</td>
-                <td>{{ people.title }}</td>
-                <td>{{ people.firstName }}</td>
-                <td>{{ people.lastName }}</td>
-                <td>{{ people.age }}</td>
-                <td>{{ people.email }}</td>
-                <td>
-                    {% for role in people.roles %}
-                        {{ role }}
-                    {% endfor %}
-                </td>
-                <td>
-                    <button type="button" class="btn-warning"
-                            onclick="location.href = {{ path('admin_get_people') }}">Modify
-                    </button>
-                </td>
-            {% else %}
-                <p>there is currently no peoples registered</p>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            <td class="table-primary">{{ people.id }}</td>
+            <td class="table-secondary">{{ people.title }}</td>
+            <td class="table-info">{{ people.firstName }}</td>
+            <td class="table-light">{{ people.lastName }}</td>
+            <td class="table-success">{{ people.age }}</td>
+            <td class="table-warning">{{ people.email }}</td>
+            <td class="table-danger">
+                {% for role in people.roles %}
+                    {{ role }}
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{{ path('admin_get_people_ID',{'id':people.id}) }}"
+                   class="btn btn-warning">Modify</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
