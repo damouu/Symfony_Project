@@ -12,7 +12,7 @@ class HelloBilalController extends AbstractController
     /**
      * @Route("/pokemon", name="pokemon")
      */
-    public function index()
+    public function index(): Response
     {
         $Pokemon_games = array('Pokemon_red' => 'Pokémon Red Version is the reprogrammed versions of Pocket Monsters Red',
             'Pokemon_blue' => 'Pokémon Blue Version is the reprogrammed versions of Pocket Monsters Blue',

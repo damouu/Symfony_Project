@@ -15,7 +15,7 @@ class LuckyNumber extends AbstractController
      * @return Response
      * @throws Exception
      */
-    public function sayHiTest()
+    public function sayHiTest(): Response
     {
         $number = random_int(0, 365);
         $loader = $this->get('twig')->getLoader();
