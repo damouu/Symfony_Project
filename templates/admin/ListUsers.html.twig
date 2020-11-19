@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Users List{% endblock %}
+{% block title %}Peoples List{% endblock %}
 
 {% block body %}
     <div class="">
-        <h1 class="text-center mt-5">Users Lists</h1>
+        <h1 class="text-center mt-5">peoples Lists</h1>
         <table class="table">
             <thead>
             <th>Id</th>
@@ -16,25 +16,25 @@
             <th>Role</th>
             </thead>
             <tbody>
-            {% for user in users %}
-                <td>{{ user.id }}</td>
-                <td>{{ user.title }}</td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.age }}</td>
-                <td>{{ user.email }}</td>
+            {% for people in peoples %}
+                <td>{{ people.id }}</td>
+                <td>{{ people.title }}</td>
+                <td>{{ people.firstName }}</td>
+                <td>{{ people.lastName }}</td>
+                <td>{{ people.age }}</td>
+                <td>{{ people.email }}</td>
                 <td>
-                    {% for role in user.roles %}
+                    {% for role in people.roles %}
                         {{ role }}
                     {% endfor %}
                 </td>
                 <td>
                     <button type="button" class="btn-warning"
-                            onclick="location.href = {{ path('admin_index') }}">Modify
+                            onclick="location.href = {{ path('admin_get_people') }}">Modify
                     </button>
                 </td>
             {% else %}
-                <p>there is currently no users registered</p>
+                <p>there is currently no peoples registered</p>
             {% endfor %}
             </tbody>
         </table>
