@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class PokemonController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_ADMIN")
      * @Route("/pokemon/{id}", name="pokemon")
      * @param Pokemon $pokemon
      * @return Response
