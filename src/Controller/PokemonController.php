@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pokemon;
+use App\Repository\PokemonRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,7 @@ class PokemonController extends AbstractController
      */
     public function index(Pokemon $pokemon): Response
     {
+        //$pokemon->findOneBySpeed($speed);
         $pokemonGif = "https://projectpokemon.org/images/normal-sprite/" . lcfirst($pokemon->getName()) . ".gif";
         return $this->render('pokemon/index.html.twig', [
             'controller_name' => 'PokemonController',

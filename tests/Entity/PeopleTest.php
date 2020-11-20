@@ -15,7 +15,7 @@ class PeopleTest extends TestCase
     public function testPeople(): void
     {
         $people = new People();
-        $this->assertIsObject("dede");
+        $this->assertIsObject($people);
     }
 
     public function testPeopleAgeIsOver20(): void
