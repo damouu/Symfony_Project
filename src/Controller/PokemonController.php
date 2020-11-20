@@ -29,4 +29,14 @@ class PokemonController extends AbstractController
             'pokemonGif' => $pokemonGif
         ]);
     }
+
+    /**
+     * @Route ("/dede")
+     */
+    public function dede(): Response
+    {
+        $response = new Response();
+        $response->setContent("<h1>pipi</h1>");
+        $response->send();
+    }
 }

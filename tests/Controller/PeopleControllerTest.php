@@ -8,18 +8,18 @@ use PHPUnit\Framework\TestCase;
 class PeopleControllerTest extends TestCase
 {
 
-    public function testEdit()
+    public function testEdit(): void
     {
         $dede = 11;
         $this->assertIsInt($dede);
     }
 
-    public function testIndex()
+    public function testIndex(): void
     {
 
     }
 
-    public function testRegister()
+    public function testRegister(): void
     {
 
     }
