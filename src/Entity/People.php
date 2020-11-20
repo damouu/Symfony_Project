@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="people", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_28166a26e7927c74", columns={"email"})})
  * @ORM\Entity
  */
-class People implements \Symfony\Component\Security\Core\User\UserInterface
+class People
 {
     /**
      * @var string
@@ -21,6 +21,134 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
      * @ORM\SequenceGenerator(sequenceName="people_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
+
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAge(): int
+    {
+        return $this->age;
+    }
+
+    /**
+     * @param int $age
+     */
+    public function setAge(int $age): void
+    {
+        $this->age = $age;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string|null $password
+     */
+    public function setPassword(?string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string|null $email
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return json|null
+     */
+    public function getRoles(): ?json
+    {
+        return $this->roles;
+    }
+
+    /**
+     * @param json|null $roles
+     */
+    public function setRoles(?json $roles): void
+    {
+        $this->roles = $roles;
+    }
 
     /**
      * @var string
@@ -65,118 +193,11 @@ class People implements \Symfony\Component\Security\Core\User\UserInterface
     private $email;
 
     /**
-     * @var json
+     * @var json|null
      *
-     * @ORM\Column(name="roles", type="json", nullable=true, options={"default": "[]"})
+     * @ORM\Column(name="roles", type="json", nullable=true, options={"default"="[]"})
      */
-    private $roles;
-
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getFirstName(): ?string
-    {
-        return $this->firstName;
-    }
-
-    public function setFirstName(string $firstName): self
-    {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    public function getAge(): ?int
-    {
-        return $this->age;
-    }
-
-    public function setAge(int $age): self
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(?string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(?string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
+    private $roles = '[]';
 
 
-    public function getRoles(): ?array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-
-        return $this;
-    }
-
-
-    public function getSalt()
-    {
-        // TODO: Implement getSalt() method.
-    }
-
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
-
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
 }

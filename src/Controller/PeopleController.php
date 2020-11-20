@@ -11,12 +11,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 
+/**
+ * Class PeopleController
+ * @package App\Controller
+ * @Route("/people", name="people_")
+ */
 class PeopleController extends AbstractController
 {
     /**
-     * @Route("/people/{id}", name="get_people")
+     * @Route("/{id}", name="id")
      * @param People $people
      * @return Response
      */
@@ -29,7 +33,7 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route ("/register/people", name="register_people")
+     * @Route ("/register", name="register")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @param UserPasswordEncoderInterface $passwordEncoder
@@ -50,13 +54,13 @@ class PeopleController extends AbstractController
                 return $this->redirectToRoute('HomePage');
             }
         }
-        return $this->render('form_people/index.html.twig', [
+        return $this->render('form.html.twig', [
             'formPeople' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route ("/edit/people/{id}", name="edit_people")
+     * @Route ("/edit/{id}", name="edit")
      * @param People $people
      * @param Request $request
      * @param EntityManagerInterface $entityManager
@@ -70,9 +74,9 @@ class PeopleController extends AbstractController
             $entityManager->persist($form->getData());
             $entityManager->flush();
             $this->addFlash('success', 'data successfully updated');
-            return $this->redirectToRoute('get_people', ['id' => $people->getId()]);
+            return $this->redirectToRoute('people_id', ['id' => $people->getId()]);
         }
-        return $this->render('form_people/index.html.twig', [
+        return $this->render('form.html.twig', [
             'formPeople' => $form->createView(),
         ]);
     }
