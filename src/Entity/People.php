@@ -30,10 +30,7 @@ class People implements UserInterface
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
      * @Assert\Choice({"Ms", "Dr", "Miss", "Prof", "Mrs", "DDS"})
      */
-    public function getId(): string
-    {
-        return $this->id;
-    }
+    private $title;
 
     /**
      * @var string
@@ -41,10 +38,7 @@ class People implements UserInterface
      * @Assert\Type(type="string")
      * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
      */
-    public function setId(string $id): void
-    {
-        $this->id = $id;
-    }
+    private $firstName;
 
     /**
      * @var string
@@ -83,161 +77,110 @@ class People implements UserInterface
 
     public function getId(): ?string
     {
+        return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
         return $this->title;
     }
 
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title): void
+    public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
-    /**
-     * @param string $firstName
-     */
-    public function setFirstName(string $firstName): void
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
-    /**
-     * @param string $lastName
-     */
-    public function setLastName(string $lastName): void
+    public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
-    /**
-     * @return int
-     */
-    public function getAge(): int
+    public function getAge(): ?int
     {
         return $this->age;
     }
 
-    /**
-     * @param int $age
-     */
-    public function setAge(int $age): void
+    public function setAge(int $age): self
     {
         $this->age = $age;
+
+        return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    /**
-     * @param string|null $password
-     */
-    public function setPassword(?string $password): void
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
+
+        return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param string|null $email
-     */
-    public function setEmail(?string $email): void
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
-    /**
-     * @return json|null
-     */
-    public function getRoles(): ?json
+
+    public function getRoles(): ?array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
-    /**
-     * @param json|null $roles
-     */
-    public function setRoles(?json $roles): void
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
     }
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=255, nullable=false)
-     */
-    private $title;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
-     */
-    private $firstName;
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
-     */
-    private $lastName;
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="age", type="integer", nullable=false)
-     */
-    private $age;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
-     */
-    private $password;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @var json|null
-     *
-     * @ORM\Column(name="roles", type="json", nullable=true, options={"default"="[]"})
-     */
-    private $roles = '[]';
-
-
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
 }
