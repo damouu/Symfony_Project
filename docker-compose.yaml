@@ -1,16 +1,18 @@
 version: '3.7'
 services:
-  mongodb:
+  Mongo:
     image: mongo:latest
     container_name: mongodb
     hostname: mongodb
     ports:
       - "27017:27017"
-  database:
+  PostgreSQL:
     image: 'postgres:alpine'
+    container_name: postgres
+    hostname: postgres
     environment:
       POSTGRES_PASSWORD: main
       POSTGRES_USER: main
       POSTGRES_DB: main
     ports:
-      - '5432'
+      - '32768:5432'

@@ -19,11 +19,12 @@ class PokemonController extends AbstractController
     /**
      * @Route("/{id}", name="get")
      * @param Pokemon $pokemon
+     * @param PokemonRepository $pokemonRepository
      * @return Response
      */
-    public function index(Pokemon $pokemon): Response
+    public function index(Pokemon $pokemon, PokemonRepository $pokemonRepository): Response
     {
-        //$pokemon->findOneBySpeed($speed);
+        $dede = $pokemonRepository->findByExampleField(70);
         $pokemonGif = "https://projectpokemon.org/images/normal-sprite/" . lcfirst($pokemon->getName()) . ".gif";
         return $this->render('pokemon/index.html.twig', [
             'controller_name' => 'PokemonController',

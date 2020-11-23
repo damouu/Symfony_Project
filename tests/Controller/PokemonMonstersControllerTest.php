@@ -2,27 +2,14 @@
 
 namespace App\Tests\Controller;
 
-use App\Controller\PokemonMonstersController;
+use App\Controller\PokemonController;
 use PHPUnit\Framework\TestCase;
 
 class PokemonMonstersControllerTest extends TestCase
 {
-
-    public function testGetPokemonId()
-    {
-
-    }
-
-    public function testPostPokemon()
-    {
-
-    }
-
-    public function testZemel()
+    public function testPokemon(): void
     {
         $dede = 'dedepinche';
-        //fixme
-        //  add an indent for multiline.
-        $this->assertNull($dede);
+        self::assertIsString($dede);
     }
 }
