@@ -17,18 +17,10 @@
         }
     </style>
 
-    <div class="example-wrapper">
-        <h1>Hello {{ app.request.query.get('name') | default('random user') }}! ✅</h1>
-
-        This friendly message is coming from:
-        <ul>
-            <li>Your controller at <code><a
-                            href="{{ '/home/mouad/PhpstormProjects/Kanji_App-Admin/src/Controller/HelloBilalController.php'|file_link(0) }}">src/Controller/HelloBilalController.php</a></code>
-            </li>
-            <li>Your template at <code><a
-                            href="{{ '/home/mouad/PhpstormProjects/Kanji_App-Admin/templates/hello_bilal/listUsers.html.twig'|file_link(0) }}">templates/hello_bilal/index.html.twig</a></code>
-            </li>
-        </ul>
-    </div>
-    <a href="{{ path('HomePage') }}">to Home Page</a>
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/home/mouad/PhpstormProjects/Kanji_App-Admin/src/Controller/AdminController.php'|file_link(0) }}">src/Controller/AdminController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/home/mouad/PhpstormProjects/Kanji_App-Admin/templates/admin/form.html.twig'|file_link(0) }}">templates/admin/index.html.twig</a></code></li>
+    </ul>
+</div>
 {% endblock %}
